@@ -21,30 +21,49 @@ class Sorting(object):
         for i in range(0, n):
             cursor = arr[i]
             # move elements of arr[0....i-1] (left-side), that are greater than cursor, to one position ahead of their current position
-            cursor_pos = i
-            while (cursor_pos > 0 and cursor < arr[cursor_pos - 1]):
-                arr[cursor_pos] = arr[cursor_pos - 1]
-                cursor_pos -= 1
+            cursor_pointer = i
+            while (cursor_pointer > 0 and cursor < arr[cursor_pointer - 1]):
+                arr[cursor_pointer] = arr[cursor_pointer - 1]
+                cursor_pointer -= 1
             # move current cursor to its correct position
-            arr[cursor_pos] = cursor
+            arr[cursor_pointer] = cursor
 
-    def quickSort(self, arr, start, end):
+    def quickSortList(self, list):
+        if (len(list) <= 1):
+            return list
+        else:
+            pivot  = list[0]
+            left_part, right_part = [], []
+            for x in list[1:]:
+                if (x  <= pivot):
+                    left_part.append(x)
+                else:
+                    right_part.append(x)
+            return self.quickSortList(left_part) + [pivot] + self.quickSortList(right_part)
+
+
+    def quickSortArray(self, arr, start, end):
         if (start >= end):
             return
-        pivot = self.partitionCollection(arr, start, end)
+        pivot_pointer = self.partitionCollection(arr, start, end)
         # sort the left side
-        self.quickSort(arr, start, pivot - 1)
+        self.quickSortArray(arr, start, pivot_pointer - 1)
         # sor the right side
-        self.quickSort(arr, pivot + 1, end)
+        self.quickSortArray(arr, pivot_pointer + 1, end)
 
     def partitionCollection(self, arr, start, end):
-        pivot = start
-        for i in range(start + 1, end + 1):
-            if (arr[i] <= arr[pivot]):
-                pivot += 1
-                self.swap(arr, i, pivot)
-        self.swap(arr, start, pivot)
-        return pivot
+        pivot = arr[end]
+        # index of the smaller element
+        i = start - 1
+        for j in range(start, end):
+            if (arr[j] <= pivot):
+                # increment index of smaller element
+                i += 1
+                # move element < pivot to the left
+                self.swap(arr, j, i)
+        # move pivot to correct position
+        self.swap(arr, end, i+1)
+        return i+1
 
     def swap(self, arr, first, last):
         temp = arr[first]
@@ -54,16 +73,28 @@ class Sorting(object):
 
 sort = Sorting()
 
-arr = [12, 11, 13, 5, 6, 1, 7, 9, 3, 10]
 print("********Bubble Sort**********")
-sort.bubbleSort(arr, len(arr))
-print(arr)
+arrBubble = [12, 11, 13, 5, 6, 1, 7, 9, 3, 10]
+sort.bubbleSort(arrBubble, len(arrBubble))
+print(arrBubble)
+
+
 print("********Selection Sort**********")
-sort.selectionSort(arr, len(arr))
-print(arr)
+arrSelection = [12, 11, 13, 5, 6, 1, 7, 9, 3, 10]
+sort.selectionSort(arrSelection, len(arrSelection))
+print(arrSelection)
+
 print("********Insertion Sort**********")
-sort.insertionSort(arr, len(arr))
-print(arr)
+arrInsertion = [12, 11, 13, 5, 6, 1, 7, 9, 3, 10]
+sort.insertionSort(arrInsertion, len(arrInsertion))
+print(arrInsertion)
+
 print("********Quick Sort**********")
-sort.quickSort(arr, 0, len(arr) - 1)
-print(arr)
+arrQuick = [12, 11, 13, 5, 6, 1, 7, 9, 3, 10]
+sort.quickSortArray(arrQuick, 0, len(arrQuick) - 1)
+print(arrQuick)
+
+print("********Quick Sort**********")
+arrQuickList = [12, 11, 13, 5, 6, 1, 7, 9, 3, 10]
+arrQuickList = sort.quickSortList(arrQuickList)
+print(arrQuickList)
