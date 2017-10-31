@@ -12,26 +12,17 @@ class PlusMinus(object):
         self.take_input()
 
     def take_input(self):
-        print("********What is the size of the Array**********")
+        print("**What is the size of the Array**")
         n = int(input().strip())
-        print("********Enter Array items seperated by space**********")
-        self.arr = [int(arr_temp) for arr_temp in input().strip().split(' ')]
+        print("**Enter Array items seperated by space**")
+        self.arr = [int(x) for x in input().strip().split(' ')]
         print("**Array as Entered**")
         print(*self.arr)
 
     def calculate_ratios(self):
-        pos_count, neg_count, zero_count = 0, 0, 0
-        pos_zero_neg = []
-        for number in self.arr:
-            if (number > 0):
-                pos_count += 1
-            elif (number < 0):
-                neg_count += 1
-            else:
-                zero_count += 1
-        print(pos_count / len(self.arr))
-        print(neg_count / len(self.arr))
-        print(zero_count / len(self.arr))
+        print(format(len([x for x in self.arr if x > 0]) / len(self.arr), ".6f"))
+        print(format(len([x for x in self.arr if x < 0]) / len(self.arr), ".6f"))
+        print(format(len([x for x in self.arr if x == 0]) / len(self.arr), ".6f"))
 
 
 plus_minus = PlusMinus()
