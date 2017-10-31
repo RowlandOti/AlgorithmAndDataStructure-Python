@@ -7,6 +7,7 @@
 
 class PlusMinus(object):
     arr = []
+
     def __init__(self):
         self.take_input()
 
@@ -22,13 +23,13 @@ class PlusMinus(object):
         pos_count, neg_count, zero_count = 0, 0, 0
         pos_zero_neg = []
         for number in self.arr:
-            if(number > 0):
+            if (number > 0):
                 pos_count += 1
             elif (number < 0):
                 neg_count += 1
             else:
                 zero_count += 1
-        print(pos_count/len(self.arr))
+        print(pos_count / len(self.arr))
         print(neg_count / len(self.arr))
         print(zero_count / len(self.arr))
 
