@@ -4,16 +4,14 @@
 from collections import Counter
 
 
-# Method 1
-def birthdayCakeBlownCandles(n, arr):
-    arr_maxheight_count = (Counter(arr).most_common())[0][1]
-    return (arr_maxheight_count)
-
+# Method 2
+def birthdayCakeBlownCandles(n, height_arr):
+    return height_arr.count(max(height_arr))
 
 print("**What is Colleen's Age**")
 n = int(input().strip())
 print("**Enter the height of the candles**")
-arr = [int(x) for x in input().strip().split(' ')]
+height_arr = [int(x) for x in input().strip().split(' ')]
 
-result = birthdayCakeBlownCandles(n, arr)
+result = birthdayCakeBlownCandles(n, height_arr)
 print(result)
