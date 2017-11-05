@@ -16,12 +16,5 @@ arr_Q = []
 for i in range(Q):
     arr_Q.append(input().strip())
 
-word_freq = []
 for i in range(Q):
-    word = arr_Q[i]
-    word_freq.append(0)
-    if word in arr_N:
-        word_freq[i] = arr_N.count(word)
-
-for count in word_freq:
-    print(count)
+    print(arr_N.count(arr_Q[i]))
