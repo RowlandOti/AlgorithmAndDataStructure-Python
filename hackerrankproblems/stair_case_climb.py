@@ -4,15 +4,15 @@
 # The staircase has n steps. In how many distinct ways can you climb the staircase?
 
 # Recurssive program to find n'th fibonacci number
-def fib(n):
+def fib_recursive(n):
     if n <= 1:
         return n
-    return fib(n - 1) + fib(n - 2)
+    return fib_recursive(n - 1) + fib_recursive(n - 2)
 
 
 # returns no. of ways to reach s'th stair
 def countWays(s):
-    return fib(s + 1)
+    return fib_recursive(s + 1)
 
 
 # Driver program

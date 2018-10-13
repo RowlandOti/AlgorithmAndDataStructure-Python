@@ -9,7 +9,7 @@ print("**What is the size of the Staircase**")
 N = int(input().strip())
 
 # Method 1
-for i in range(1, N + 1):
+for i in range(1,N+1):
     print(' ' * (N - i) + '#' * i)
 
 # Method 2
